@@ -1,7 +1,8 @@
 package ma.fstm.ilisi.springbiblio.service;
 
-import ma.fstm.ilisi.springbiblio.bo.Exemplaire;
-import ma.fstm.ilisi.springbiblio.dao.ExemplaireRepository;
+import ma.fstm.ilisi.springbiblio.bo.Emprunt;
+import ma.fstm.ilisi.springbiblio.bo.EmpruntId;
+import ma.fstm.ilisi.springbiblio.dao.EmpruntRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,20 +12,21 @@ import java.util.Optional;
 
 @Service
 @Transactional
-public class ExemplaireService {
+public class EmpruntService {
     @Autowired
-    ExemplaireRepository repo;
-    public ExemplaireService(){}
-    public List<Exemplaire> listAll(){
+    EmpruntRepository repo;
+    public EmpruntService(){}
+    public List<Emprunt> listAll(){
         return repo.findAll();
     }
-    public void save(Exemplaire e){
-        repo.save(e);
+    public void save(Emprunt em){
+        repo.save(em);
     }
-    public void delete(Long id){
+    public void delete(EmpruntId id){
         repo.deleteById(id);
     }
-    public Optional<Exemplaire> get(Long id){
+    public Optional<Emprunt> get(EmpruntId id){
         return repo.findById(id);
     }
 }
+
