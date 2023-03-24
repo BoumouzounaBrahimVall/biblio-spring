@@ -28,6 +28,6 @@ public class ExemplaireService {
         return repo.findById(id);
     }
     public List<Exemplaire> findByIsbn(String isbn){
-        return repo.findIdByIsbn(isbn);
+        return repo.findByIsbn(isbn);
     }
 }

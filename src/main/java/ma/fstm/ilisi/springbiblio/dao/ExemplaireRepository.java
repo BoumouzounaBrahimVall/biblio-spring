@@ -11,5 +11,5 @@ import java.util.List;
 @Repository
 public interface ExemplaireRepository extends JpaRepository<Exemplaire, Long> {
     @Query("SELECT e FROM Exemplaire e where e.livre.isbn = :isbn")
-    List<Exemplaire> findIdByIsbn(@Param("isbn") String isbn);
+    List<Exemplaire> findByIsbn(@Param("isbn") String isbn);
 }

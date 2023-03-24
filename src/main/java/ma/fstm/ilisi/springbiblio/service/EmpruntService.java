@@ -28,5 +28,8 @@ public class EmpruntService {
     public Optional<Emprunt> get(EmpruntId id){
         return repo.findById(id);
     }
+    public List<Emprunt> findByAdherent(String idAd){
+        return repo.findbyAdherent(idAd);
+    }
 }
 
