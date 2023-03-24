@@ -27,4 +27,7 @@ public class ExemplaireService {
     public Optional<Exemplaire> get(Long id){
         return repo.findById(id);
     }
+    public List<Exemplaire> findByIsbn(String isbn){
+        return repo.findIdByIsbn(isbn);
+    }
 }
