@@ -12,6 +12,6 @@ import java.util.List;
 
 @Repository
 public interface EmpruntRepository extends JpaRepository<Emprunt, EmpruntId> {
-    @Query("SELECT em.adherant from Emprunt em join em.adherant ad where ad.idAd=:idAd")
+    @Query("SELECT em from Emprunt em join em.adherant ad where ad.idAd=:idAd")
     List<Emprunt> findbyAdherent(@Param("idAd") String idAd);
 }
