@@ -12,13 +12,14 @@
   <table border="1" cellpadding="10">
     <thead>
     <tr>
-      <th>ISBN</th> <th>Titre</th> <th>Actions</th>
+      <th>ISBN</th> <th>Titre</th> <th>Nbr</th>  <th>Actions</th>
     </tr>
     </thead>
     <tbody>
     <tr th:each="l : ${listLivres}">
       <td th:text="${l.isbn}">ISBN</td>
       <td th:text="${l.titre}">Titre</td>
+      <td th:text="${l.exemplaires.size()}">Nbr</td>
       <td>
         <a th:href="@{'/livre/edit/' + ${l.isbn}}">Edit</a>
         &nbsp;&nbsp;&nbsp;

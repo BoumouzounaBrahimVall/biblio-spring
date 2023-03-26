@@ -1,8 +1,11 @@
 package ma.fstm.ilisi.springbiblio.controller;
 
+import ma.fstm.ilisi.springbiblio.bo.Adherant;
 import ma.fstm.ilisi.springbiblio.bo.Emprunt;
 import ma.fstm.ilisi.springbiblio.bo.EmpruntId;
+import ma.fstm.ilisi.springbiblio.service.AdherantService;
 import ma.fstm.ilisi.springbiblio.service.EmpruntService;
+import ma.fstm.ilisi.springbiblio.service.ExemplaireService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +14,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,6 +25,10 @@ public class EmpruntController {
 
     @Autowired
     private EmpruntService service;
+    @Autowired
+    private AdherantService serviceAds;
+    @Autowired
+    private ExemplaireService serviceEx;
 
     public EmpruntController() {
     }
@@ -42,16 +51,9 @@ public class EmpruntController {
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public String saveEmprunt(@ModelAttribute("emprunt") Emprunt l) {
+        l.getId().setDateemp(LocalDate.now().toString());
         service.save(l);
         return "redirect:/emprunt";
-    }
-
-    @RequestMapping("/edit/{idExp}/{idAd}/{dateEmp}")
-    public ModelAndView showEditEmpruntPage(@PathVariable(name = "idExp") int idExp,@PathVariable(name = "idAd") String idAd,@PathVariable(name = "dateEmp") String dateEmp) {
-        ModelAndView mav = new ModelAndView("edit_emprunt");
-        Optional<Emprunt> l = service.get(new EmpruntId(idExp,idAd,dateEmp));
-        mav.addObject("emprunt", l);
-        return mav;
     }
 
     @RequestMapping("/delete/{idExp}/{idAd}/{dateEmp}")

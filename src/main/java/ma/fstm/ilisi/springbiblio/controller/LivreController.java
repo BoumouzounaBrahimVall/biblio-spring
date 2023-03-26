@@ -1,14 +1,13 @@
 package ma.fstm.ilisi.springbiblio.controller;
 
+import ma.fstm.ilisi.springbiblio.bo.Exemplaire;
 import ma.fstm.ilisi.springbiblio.bo.Livre;
+import ma.fstm.ilisi.springbiblio.service.ExemplaireService;
 import ma.fstm.ilisi.springbiblio.service.LivreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -19,7 +18,8 @@ import java.util.Optional;
 public class LivreController {
     @Autowired
     private LivreService service;
-
+    @Autowired
+    private ExemplaireService serviceEx;
     public LivreController(){}
     @RequestMapping(method = RequestMethod.GET)
     public String viewLivrePage(Model model){
@@ -32,12 +32,14 @@ public class LivreController {
     public String showNewLivrePage(Model model){
         Livre l=new Livre();
         model.addAttribute("livre",l);
-
         return "new_livre";
     }
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public String saveLivre(@ModelAttribute("livre") Livre l) {
-        service.save(l);
+    public String saveLivre(@ModelAttribute("livre") Livre livre, @RequestParam("nbr") int nbr) {
+        service.save(livre);
+        for(int i = 0; i < nbr; i++) {
+            serviceEx.save(new Exemplaire(i, livre));
+        }
         return "redirect:/livre";
     }
 

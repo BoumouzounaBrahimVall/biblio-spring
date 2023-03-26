@@ -1,9 +1,21 @@
 package ma.fstm.ilisi.springbiblio.bo;
 
 import jakarta.persistence.*;
+
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Table(name="LIVRE")
 public class Livre implements java.io.Serializable {
+
+
+    private String isbn;
+    private String titre;
+    private Set<Exemplaire> exemplaires = new HashSet(0);
+
+    public Livre() {
+    }
 
     public Livre(String isbn, String titre) {
         this.isbn = isbn;
@@ -18,19 +30,12 @@ public class Livre implements java.io.Serializable {
                 '}';
     }
 
-    private String isbn;
-    private String titre;
-
-    public Livre() {
-    }
-
-
     public Livre(String isbn) {
         this.isbn = isbn;
     }
 
     @Id
-    @Column(name="ISBN", unique=true, nullable=false, length=13)
+    @Column(name = "ISBN", unique = true, nullable = false, length = 13)
     public String getIsbn() {
         return this.isbn;
     }
@@ -40,7 +45,7 @@ public class Livre implements java.io.Serializable {
     }
 
 
-    @Column(name="TITRE", length=100)
+    @Column(name = "TITRE", length = 100)
     public String getTitre() {
         return this.titre;
     }
@@ -49,7 +54,13 @@ public class Livre implements java.io.Serializable {
         this.titre = titre;
     }
 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "livre")
+    public Set<Exemplaire> getExemplaires() {
+        return this.exemplaires;
+    }
 
-
+    public void setExemplaires(Set<Exemplaire> exemplaires) {
+        this.exemplaires = exemplaires;
+    }
 }
 
