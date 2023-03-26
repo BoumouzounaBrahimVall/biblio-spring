@@ -2,7 +2,7 @@ package ma.fstm.ilisi.springbiblio.bo;
 import jakarta.persistence.*;
 @Entity
 @Table(name = "adherant")
-public class Adherent {
+public class Adherant {
     @Id
     @Column(name = "idAd")
     private String idAd;
@@ -13,13 +13,13 @@ public class Adherent {
     @Column(name = "prenom")
     private String prenom;
 
-    public Adherent(String idAd, String nom, String prenom) {
+    public Adherant(String idAd, String nom, String prenom) {
         this.idAd = idAd;
         this.nom = nom;
         this.prenom = prenom;
     }
 
-    public Adherent() {
+    public Adherant() {
     }
 
     public String getIdAd() {

@@ -2,49 +2,84 @@ package ma.fstm.ilisi.springbiblio.bo;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 @Embeddable
-public class EmpruntId implements Serializable {
+public class EmpruntId  implements java.io.Serializable {
 
-    @Column(name = "idExp")
-    private Long idExp;
 
-    @Column(name = "idAd")
-    private String idAd;
-
-    @Column(name = "dateEmp")
-    private String dateEmp;
+    private int idexmp;
+    private String cin;
+    private String dateemp;
 
     public EmpruntId() {
     }
 
-    public EmpruntId(Long idExp, String idAd, String dateEmp) {
-        this.idExp = idExp;
-        this.idAd = idAd;
-        this.dateEmp = dateEmp;
+    public EmpruntId(int idexmp, String cin, String dateemp) {
+        this.idexmp = idexmp;
+        this.cin = cin;
+        this.dateemp = dateemp;
     }
 
-    public Long getIdExp() {
-        return idExp;
+
+
+    @Column(name="IDEXMP", nullable=false, precision=22, scale=0)
+    public int getIdexmp() {
+        return this.idexmp;
     }
 
-    public void setIdExp(Long idExp) {
-        this.idExp = idExp;
+    public void setIdexmp(int idexmp) {
+        this.idexmp = idexmp;
     }
 
-    public String getIdAd() {
-        return idAd;
+
+    @Column(name="CIN", nullable=false, length=50)
+    public String getCin() {
+        return this.cin;
     }
 
-    public void setIdAd(String idAd) {
-        this.idAd = idAd;
+    public void setCin(String cin) {
+        this.cin = cin;
     }
 
-    public String getDateEmp() {
-        return dateEmp;
+
+    @Column(name="DATEEMP", nullable=false, length=50)
+    public String getDateemp() {
+        return this.dateemp;
     }
 
-    public void setDateEmp(String dateEmp) {
-        this.dateEmp = dateEmp;
+    public void setDateemp(String dateemp) {
+        this.dateemp = dateemp;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 89 * hash + this.idexmp;
+        hash = 89 * hash + Objects.hashCode(this.cin);
+        hash = 89 * hash + Objects.hashCode(this.dateemp);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final EmpruntId other = (EmpruntId) obj;
+        if (this.idexmp != other.idexmp) {
+            return false;
+        }
+        if (!Objects.equals(this.cin, other.cin)) {
+            return false;
+        }
+        return Objects.equals(this.dateemp, other.dateemp);
+    }
+
+
+
+
 }

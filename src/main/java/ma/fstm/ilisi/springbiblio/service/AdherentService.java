@@ -1,6 +1,6 @@
 package ma.fstm.ilisi.springbiblio.service;
 
-import ma.fstm.ilisi.springbiblio.bo.Adherent;
+import ma.fstm.ilisi.springbiblio.bo.Adherant;
 import ma.fstm.ilisi.springbiblio.dao.AdherentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,17 +16,17 @@ public class AdherentService {
     AdherentRepository repo;
 
     public AdherentService(){}
-    public List<Adherent> listAll(){
+    public List<Adherant> listAll(){
         return repo.findAll();
     }
-    public void save(Adherent a){
+    public void save(Adherant a){
         repo.save(a);
     }
 
     public void delete(String id){
         repo.deleteById(id);
     }
-    public Optional<Adherent> get(String id){
+    public Optional<Adherant> get(String id){
         return repo.findById(id);
     }
 
