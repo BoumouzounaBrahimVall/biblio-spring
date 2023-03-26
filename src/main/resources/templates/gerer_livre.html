@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="utf-8"/>
-  <title>Product Manager</title>
+  <title>Livre Manager</title>
 </head>
 <body>
 <div align="center">
-  <h1>Product List</h1>
-  <a href="/livre/new">Create New Product</a>
+  <h1>Livre List</h1>
+  <a href="/livre/new">Create New Livre</a>
   <br/><br/>
   <table border="1" cellpadding="10">
     <thead>
@@ -22,7 +22,7 @@
       <td>
         <a th:href="@{'/livre/edit/' + ${l.isbn}}">Edit</a>
         &nbsp;&nbsp;&nbsp;
-        <a th:href="@{'/livre/delete/' + ${l.titre}}">Delete</a>
+        <a th:href="@{'/livre/delete/' + ${l.isbn}}">Delete</a>
       </td>
     </tr>
     </tbody>

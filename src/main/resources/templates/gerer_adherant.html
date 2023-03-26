@@ -1,10 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="utf-8"/>
+    <title>Adherent Manager</title>
 </head>
 <body>
-
+<div align="center">
+    <h1>Adherent List</h1>
+    <a href="/adherant/new">Create New Adherent</a>
+    <br/><br/>
+    <table border="1" cellpadding="10">
+        <thead>
+        <tr>
+            <th>CIN</th> <th>Nom</th>  <th>Prenom</th> <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="l : ${listAdherant}">
+            <td th:text="${l.cin}">CIN</td>
+            <td th:text="${l.nom}">Nom</td>
+            <td th:text="${l.prenom}">Prenom</td>
+            <td>
+                <a th:href="@{'/adherant/edit/' + ${l.cin}}">Edit</a>
+                &nbsp;&nbsp;&nbsp;
+                <a th:href="@{'/adherant/delete/' + ${l.cin}}">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 </body>
 </html>

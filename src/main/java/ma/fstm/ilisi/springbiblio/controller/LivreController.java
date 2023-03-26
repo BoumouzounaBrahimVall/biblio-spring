@@ -22,7 +22,7 @@ public class LivreController {
 
     public LivreController(){}
     @RequestMapping(method = RequestMethod.GET)
-    public String viewHomePage(Model model){
+    public String viewLivrePage(Model model){
         List<Livre> listLivres = service.listAll();
         model.addAttribute("listLivres",listLivres);
 

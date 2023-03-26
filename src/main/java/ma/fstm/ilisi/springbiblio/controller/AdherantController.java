@@ -23,7 +23,7 @@ public class AdherantController {
 
     public AdherantController(){}
     @RequestMapping(method = RequestMethod.GET)
-    public String viewHomePage(Model model){
+    public String viewAdherantPage(Model model){
         List<Adherant> listAdherants = service.listAll();
         model.addAttribute("listAdherant",listAdherants);
 
@@ -32,7 +32,7 @@ public class AdherantController {
     @RequestMapping("/new")
     public String showNewAdherantPage(Model model){
         Adherant l=new Adherant();
-        model.addAttribute("Adherant",l);
+        model.addAttribute("adherant",l);
 
         return "new_adherant";
     }
