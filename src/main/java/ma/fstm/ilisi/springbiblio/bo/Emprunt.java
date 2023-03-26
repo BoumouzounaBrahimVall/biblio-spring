@@ -1,9 +1,7 @@
 package ma.fstm.ilisi.springbiblio.bo;
 import jakarta.persistence.*;
 @Entity
-@Table(name="EMPRUNT"
-        ,schema="BIBLIO"
-)
+@Table(name="EMPRUNT")
 public class Emprunt  implements java.io.Serializable {
 
 

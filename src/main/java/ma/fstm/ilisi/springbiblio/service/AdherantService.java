@@ -11,11 +11,11 @@ import java.util.Optional;
 
 @Service
 @Transactional
-public class AdherentService {
+public class AdherantService {
     @Autowired
     AdherentRepository repo;
 
-    public AdherentService(){}
+    public AdherantService(){}
     public List<Adherant> listAll(){
         return repo.findAll();
     }

@@ -15,42 +15,43 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
-public class AppController {
+@RequestMapping("/livre")
+public class LivreController {
     @Autowired
     private LivreService service;
 
-    public AppController(){}
-    @RequestMapping("/")
+    public LivreController(){}
+    @RequestMapping(method = RequestMethod.GET)
     public String viewHomePage(Model model){
         List<Livre> listLivres = service.listAll();
         model.addAttribute("listLivres",listLivres);
 
-        return "index";
+        return "gerer_livre";
     }
-    @RequestMapping("/livre/new")
+    @RequestMapping("/new")
     public String showNewLivrePage(Model model){
         Livre l=new Livre();
         model.addAttribute("livre",l);
 
         return "new_livre";
     }
-    @RequestMapping(value = "/livre/save", method = RequestMethod.POST)
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
     public String saveLivre(@ModelAttribute("livre") Livre l) {
         service.save(l);
-        return "redirect:/";
+        return "redirect:/livre";
     }
 
-    @RequestMapping("/livre/edit/{id}")
+    @RequestMapping("/edit/{id}")
     public ModelAndView showEditLivrePage(@PathVariable(name = "id") String id) {
         ModelAndView mav = new ModelAndView("edit_livre");
         Optional<Livre> l = service.get(id);
         mav.addObject("livre", l);
         return mav;
     }
-    @RequestMapping("/livre/delete/{id}")
-    public String deleteProduct(@PathVariable(name = "id") String id) {
+    @RequestMapping("/delete/{id}")
+    public String deleteLivre(@PathVariable(name = "id") String id) {
         service.delete(id);
-        return "redirect:/";
+        return "redirect:/livre";
     }
 
 

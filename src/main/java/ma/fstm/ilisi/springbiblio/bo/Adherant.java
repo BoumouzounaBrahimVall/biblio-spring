@@ -1,48 +1,80 @@
 package ma.fstm.ilisi.springbiblio.bo;
 import jakarta.persistence.*;
+
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
-@Table(name = "adherant")
-public class Adherant {
-    @Id
-    @Column(name = "idAd")
-    private String idAd;
+@Table(name="ADHERANT")
+public class Adherant  implements java.io.Serializable {
 
-    @Column(name = "nom")
+
+    private String cin;
     private String nom;
-
-    @Column(name = "prenom")
     private String prenom;
-
-    public Adherant(String idAd, String nom, String prenom) {
-        this.idAd = idAd;
-        this.nom = nom;
-        this.prenom = prenom;
-    }
+    private Set<Emprunt> emprunts = new HashSet(0);
 
     public Adherant() {
     }
 
-    public String getIdAd() {
-        return idAd;
+    public Adherant( String nom, String prenom,String cin) {
+        this.cin = cin;
+        this.nom = nom;
+        this.prenom = prenom;
     }
 
-    public void setIdAd(String idAd) {
-        this.idAd = idAd;
+
+    public Adherant(String cin) {
+        this.cin = cin;
+    }
+    public Adherant( String nom, String prenom,String cin, Set emprunts) {
+        this.cin = cin;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.emprunts = emprunts;
     }
 
+    @Id
+    @Column(name="CIN", unique=true, nullable=false, length=50)
+    public String getCin() {
+        return this.cin;
+    }
+
+    public void setCin(String cin) {
+        this.cin = cin;
+    }
+
+
+    @Column(name="NOM", length=50)
     public String getNom() {
-        return nom;
+        return this.nom;
     }
 
     public void setNom(String nom) {
         this.nom = nom;
     }
 
+
+    @Column(name="PRENOM", length=50)
     public String getPrenom() {
-        return prenom;
+        return this.prenom;
     }
 
     public void setPrenom(String prenom) {
         this.prenom = prenom;
     }
+
+    @OneToMany(fetch=FetchType.LAZY, mappedBy="adherant")
+    public  Set<Emprunt> getEmprunts() {
+        return this.emprunts;
+    }
+
+    public void setEmprunts( Set<Emprunt> emprunts) {
+        this.emprunts = emprunts;
+    }
+
+
+
+
 }
+
