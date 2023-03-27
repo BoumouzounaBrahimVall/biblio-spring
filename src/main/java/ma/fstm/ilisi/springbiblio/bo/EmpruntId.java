@@ -3,6 +3,8 @@ import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Embeddable
 public class EmpruntId  implements java.io.Serializable {
@@ -79,7 +81,26 @@ public class EmpruntId  implements java.io.Serializable {
         return Objects.equals(this.dateemp, other.dateemp);
     }
 
+    @Override
+    public String toString() {
+        return  "idexmp='" + idexmp + "', cin='" + cin + "'" + ", dateemp='" + dateemp + "'";
+    }
+    public static EmpruntId parseString(String str){
+        Pattern pattern = Pattern.compile("idexmp=\\s*'([\\d]+)'.*cin=\\s*'([A-Za-z0-9]+)'.*dateemp=\\s*'([\\d\\-]+)'");
 
-
-
+        Matcher matcher = pattern.matcher(str);
+        EmpruntId idEmp=new EmpruntId();
+        if (matcher.find()) {
+            String idexp = matcher.group(1);
+            String cin = matcher.group(2);
+            String date = matcher.group(3);
+            idEmp.setIdexmp(Integer.parseInt(idexp));
+            idEmp.setCin(cin);
+            idEmp.setDateemp(date);
+        } else {
+            System.out.println(str);
+            System.out.println("No match found.");
+        }
+        return idEmp;
+    }
 }

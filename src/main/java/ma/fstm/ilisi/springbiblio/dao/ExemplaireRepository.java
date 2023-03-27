@@ -14,4 +14,6 @@ public interface ExemplaireRepository extends JpaRepository<Exemplaire, Long> {
     List<Exemplaire> findByIsbn(@Param("isbn") String isbn);
     @Query("SELECT e FROM Exemplaire e JOIN e.emprunts m WHERE m.retourne=0 AND e.livre.isbn= :isbn")
     List<Exemplaire> findEmpruntedByIsbn(@Param("isbn") String isbn);
+    @Query("SELECT e FROM Exemplaire e WHERE e NOT IN (SELECT em.exemplaire FROM Emprunt em )")
+    List<Exemplaire> findFreeExemplaire( );
 }

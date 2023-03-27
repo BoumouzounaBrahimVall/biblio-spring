@@ -1,10 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="utf-8"/>
+    <title>Emprunt Manager</title>
 </head>
 <body>
-
+<div align="center">
+    <h1>Emprunt List</h1>
+    <a href="/emprunt/new">Create New Emprunt</a>
+    <br/><br/>
+    <table border="1" cellpadding="10">
+        <thead>
+        <tr>
+            <th>CIN</th> <th>ISBN</th> <th>NO exp</th> <th>Date Emp</th>   <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="l : ${listEmprunts}">
+            <td th:text="${l.adherant.cin}">cin</td>
+            <td th:text="${l.exemplaire.livre.isbn}">isbn</td>
+            <td th:text="${l.exemplaire.idexp}">idexp</td>
+            <td th:text="${l.id.dateemp}">dateEmp</td>
+            <td>
+                <a th:href="@{'/emprunt/delete/' + ${l.id.toString()}}">delete</a>
+                &nbsp;&nbsp;&nbsp;
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 </body>
 </html>

@@ -33,4 +33,7 @@ public class ExemplaireService {
     public List<Exemplaire> findEmpruntedByIsbn(String isbn){
         return repo.findEmpruntedByIsbn(isbn);
     }
+    public List<Exemplaire>findFreeExemplaire(){
+        return repo.findFreeExemplaire();
+    }
 }

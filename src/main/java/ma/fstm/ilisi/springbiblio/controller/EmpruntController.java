@@ -3,6 +3,7 @@ package ma.fstm.ilisi.springbiblio.controller;
 import ma.fstm.ilisi.springbiblio.bo.Adherant;
 import ma.fstm.ilisi.springbiblio.bo.Emprunt;
 import ma.fstm.ilisi.springbiblio.bo.EmpruntId;
+import ma.fstm.ilisi.springbiblio.bo.Exemplaire;
 import ma.fstm.ilisi.springbiblio.service.AdherantService;
 import ma.fstm.ilisi.springbiblio.service.EmpruntService;
 import ma.fstm.ilisi.springbiblio.service.ExemplaireService;
@@ -16,8 +17,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Controller
 @RequestMapping("/emprunt")
@@ -43,8 +46,13 @@ public class EmpruntController {
 
     @RequestMapping("/new")
     public String showNewEmpruntPage(Model model) {
-        Emprunt l = new Emprunt();
-        model.addAttribute("emprunt", l);
+        Emprunt emprunt = new Emprunt();
+        List<Exemplaire> listExemplaires=serviceEx.findFreeExemplaire();
+        List<Adherant> listAdherants=serviceAds.listAll();
+
+        model.addAttribute("emprunt", emprunt);
+        model.addAttribute("listExemplaires",listExemplaires);
+        model.addAttribute("listAdherants",listAdherants);
 
         return "new_emprunt";
     }
@@ -56,9 +64,9 @@ public class EmpruntController {
         return "redirect:/emprunt";
     }
 
-    @RequestMapping("/delete/{idExp}/{idAd}/{dateEmp}")
-    public String deleteEmprunt(@PathVariable(name = "idExp") long idExp,@PathVariable(name = "idAd") String idAd,@PathVariable(name = "dateEmp") String dateEmp) {
-        service.delete(new EmpruntId(idExp,idAd,dateEmp));
+    @RequestMapping("/delete/{id}")
+    public String deleteEmprunt(@PathVariable(name = "id") String id) {
+        service.delete(EmpruntId.parseString(id));
         return "redirect:/emprunt";
     }
 }
