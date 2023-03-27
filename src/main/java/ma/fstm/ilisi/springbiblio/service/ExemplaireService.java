@@ -30,4 +30,7 @@ public class ExemplaireService {
     public List<Exemplaire> findByIsbn(String isbn){
         return repo.findByIsbn(isbn);
     }
+    public List<Exemplaire> findEmpruntedByIsbn(String isbn){
+        return repo.findEmpruntedByIsbn(isbn);
+    }
 }

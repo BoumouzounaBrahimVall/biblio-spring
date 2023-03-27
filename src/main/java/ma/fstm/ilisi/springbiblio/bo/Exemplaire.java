@@ -10,7 +10,7 @@ public class Exemplaire  implements java.io.Serializable {
 
 
 
-    private int idexp;
+    private long idexp;
     private Livre livre;
     private Set<Emprunt> emprunts = new HashSet(0);
 
@@ -18,29 +18,32 @@ public class Exemplaire  implements java.io.Serializable {
     }
 
 
-    public Exemplaire(int idexp) {
+    public Exemplaire(long idexp) {
         this.idexp = idexp;
     }
-    public Exemplaire(int idexp, Livre livre, Set emprunts) {
+    public Exemplaire(long idexp, Livre livre, Set emprunts) {
         this.idexp = idexp;
         this.livre = livre;
         this.emprunts = emprunts;
     }
 
-    public Exemplaire(int idexp, Livre livre) {
+    public Exemplaire(long idexp, Livre livre) {
         this.idexp = idexp;
         this.livre = livre;
     }
-
+    public Exemplaire(Livre livre){
+        this.livre=livre;
+    }
 
 
     @Id
     @Column(name="IDEXP", unique=true)
-    public int getIdexp() {
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    public long getIdexp() {
         return this.idexp;
     }
 
-    public void setIdexp(int idexp) {
+    public void setIdexp(long idexp) {
         this.idexp = idexp;
     }
 

@@ -8,14 +8,14 @@ import java.util.Objects;
 public class EmpruntId  implements java.io.Serializable {
 
 
-    private int idexmp;
+    private long idexmp;
     private String cin;
     private String dateemp;
 
     public EmpruntId() {
     }
 
-    public EmpruntId(int idexmp, String cin, String dateemp) {
+    public EmpruntId(long idexmp, String cin, String dateemp) {
         this.idexmp = idexmp;
         this.cin = cin;
         this.dateemp = dateemp;
@@ -24,11 +24,11 @@ public class EmpruntId  implements java.io.Serializable {
 
 
     @Column(name="IDEXMP", nullable=false, precision=22, scale=0)
-    public int getIdexmp() {
+    public long getIdexmp() {
         return this.idexmp;
     }
 
-    public void setIdexmp(int idexmp) {
+    public void setIdexmp(long idexmp) {
         this.idexmp = idexmp;
     }
 
@@ -55,7 +55,7 @@ public class EmpruntId  implements java.io.Serializable {
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 89 * hash + this.idexmp;
+        hash = 89 * hash + (int)this.idexmp;
         hash = 89 * hash + Objects.hashCode(this.cin);
         hash = 89 * hash + Objects.hashCode(this.dateemp);
         return hash;

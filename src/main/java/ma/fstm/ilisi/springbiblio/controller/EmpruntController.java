@@ -57,7 +57,7 @@ public class EmpruntController {
     }
 
     @RequestMapping("/delete/{idExp}/{idAd}/{dateEmp}")
-    public String deleteEmprunt(@PathVariable(name = "idExp") int idExp,@PathVariable(name = "idAd") String idAd,@PathVariable(name = "dateEmp") String dateEmp) {
+    public String deleteEmprunt(@PathVariable(name = "idExp") long idExp,@PathVariable(name = "idAd") String idAd,@PathVariable(name = "dateEmp") String dateEmp) {
         service.delete(new EmpruntId(idExp,idAd,dateEmp));
         return "redirect:/emprunt";
     }
