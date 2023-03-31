@@ -3,10 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
-<a href="/livre">Gerer les livre </a>
-<a href="/adherant">Gerer les Adherent </a>
-<a href="/emprunt">Gerer les Emprunt </a>
+<nav class="bg-teal-600 px-4 py-4">
+    <div class="flex justify-between items-center">
+        <a href="#" class="text-white font-bold text-lg">My Library</a>
+    </div>
+</nav>
+<div class="flex justify-center items-center h-screen bg-teal-500">
+    <div class="flex flex-col md:flex-row space-x-4">
+        <a href="/livre" class="flex-1">
+            <div class="bg-white p-4 rounded-lg shadow-md hover:shadow-lg">
+                <h2 class="text-lg font-bold mb-2">Gérer les livres</h2>
+                <p class="text-gray-700">Ajouter, modifier ou supprimer des livres de la bibliothèque.</p>
+            </div>
+        </a>
+        <a href="/adherant" class="flex-1">
+            <div class="bg-white p-4 rounded-lg shadow-md hover:shadow-lg">
+                <h2 class="text-lg font-bold mb-2">Gérer les adhérents</h2>
+                <p class="text-gray-700">Ajouter, modifier ou supprimer des adhérents de la bibliothèque.</p>
+            </div>
+        </a>
+        <a href="/emprunt" class="flex-1">
+            <div class="bg-white p-4 rounded-lg shadow-md hover:shadow-lg">
+                <h2 class="text-lg font-bold mb-2">Gérer les emprunts</h2>
+                <p class="text-gray-700">Effectuer et annuler des emprunts de livres pour les adhérents.</p>
+            </div>
+        </a>
+    </div>
+</div>
 </body>
 </html>

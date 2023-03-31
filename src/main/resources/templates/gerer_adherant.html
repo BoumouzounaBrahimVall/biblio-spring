@@ -3,31 +3,45 @@
 <head>
     <meta charset="utf-8"/>
     <title>Adherent Manager</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
-<div align="center">
-    <h1>Adherent List</h1>
-    <a href="/adherant/new">Create New Adherent</a>
-    <br/><br/>
-    <table border="1" cellpadding="10">
-        <thead>
-        <tr>
-            <th>CIN</th> <th>Nom</th>  <th>Prenom</th> <th>Actions</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="l : ${listAdherant}">
-            <td th:text="${l.cin}">CIN</td>
-            <td th:text="${l.nom}">Nom</td>
-            <td th:text="${l.prenom}">Prenom</td>
-            <td>
-                <a th:href="@{'/adherant/edit/' + ${l.cin}}">Edit</a>
-                &nbsp;&nbsp;&nbsp;
-                <a th:href="@{'/adherant/delete/' + ${l.cin}}">Delete</a>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+<nav class="bg-teal-600 px-4 py-4">
+    <div class="flex justify-between items-center">
+        <a href="#" class="text-white font-bold text-lg">My Library</a>
+        <div class="flex">
+            <a href="/livre" class="text-white mr-4 hover:text-teal-300">Gerer les livre</a>
+            <a href="/adherant" class="text-white mr-4 hover:text-teal-300">Gerer les Adherent</a>
+            <a href="/emprunt" class="text-white hover:text-teal-300">Gerer les Emprunt</a>
+        </div>
+    </div>
+</nav>
+<div class="flex justify-center items-center h-screen bg-teal-500">
+    <div class="bg-white px-4 py-2 rounded-md">
+        <h1 class="text-3xl text-center font-bold mb-8">Adherent List</h1>
+        <a href="/adherant/new" class="bg-teal-500 text-white px-4 py-2 rounded-md hover:bg-teal-600 mb-4 block text-center">Create New Adherent</a>
+        <table class="border-collapse border border-gray-400 w-full">
+            <thead>
+            <tr class="bg-gray-200 text-gray-700">
+                <th class="px-4 py-2 text-left">CIN</th>
+                <th class="px-4 py-2 text-left">Nom</th>
+                <th class="px-4 py-2 text-left">Prenom</th>
+                <th class="px-4 py-2 text-left">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="l : ${listAdherant}" class="bg-white border-gray-400">
+                <td class="px-4 py-2 border" th:text="${l.cin}"></td>
+                <td class="px-4 py-2 border" th:text="${l.nom}"></td>
+                <td class="px-4 py-2 border" th:text="${l.prenom}"></td>
+                <td class="px-4 py-2 border">
+                    <a th:href="@{'/adherant/edit/' + ${l.cin}}" class="bg-blue-500 text-white px-2 py-1 rounded-md hover:bg-blue-600">Edit</a>
+                    <a th:href="@{'/adherant/delete/' + ${l.cin}}" class="bg-red-500 text-white px-2 py-1 rounded-md hover:bg-red-600 ml-2">Delete</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
 </body>
 </html>

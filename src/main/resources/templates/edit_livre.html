@@ -3,38 +3,57 @@
 <head>
   <meta charset="utf-8" />
   <title>Edit Book</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    table {
+      border-collapse: collapse;
+    }
+
+    td, th {
+      border: none;
+    }
+  </style>
 </head>
 <body>
-<div align="center">
-  <h1>Edit Book</h1>
-  <br />
-  <form action="#" th:action="@{/livre/save}" th:object="${livre}"
-        method="post">
-    <table border="0" cellpadding="10">
-      <tr>
-        <td>ISBN:</td>
-        <td>
-          <input type="text" th:field="*{isbn}" readonly="readonly" />
-        </td>
-      </tr>
-      <tr>
-        <td>titre:</td>
-        <td>
-          <input type="text" th:field="*{titre}" />
-        </td>
-      </tr>
-      <tr>
-        <td>titre:</td>
-        <td>
-          <input type="text" name="nbr" th:value="*{exemplaires.size()}" />
-        </td>
-      </tr>
-      <tr>
-        <td colspan="2"><button type="submit">Save</button> </td>
-      </tr>
-    </table>
-  </form>
-
+<nav class="bg-teal-600 px-4 py-4">
+  <div class="flex justify-between items-center">
+    <a href="#" class="text-white font-bold text-lg">My Library</a>
+    <div class="flex">
+      <a href="/livre" class="text-white mr-4 hover:text-teal-300">Gerer les livre</a>
+      <a href="/adherant" class="text-white mr-4 hover:text-teal-300">Gerer les Adherent</a>
+      <a href="/emprunt" class="text-white hover:text-teal-300">Gerer les Emprunt</a>
+    </div>
+  </div>
+</nav>
+<div class="flex justify-center items-center h-screen bg-teal-500">
+  <div class="bg-white px-4 py-2 rounded-md">
+    <h1 class="text-3xl text-center font-bold mb-8">Edit Book</h1>
+    <form th:action="@{/livre/save}" th:object="${livre}" method="post">
+      <table >
+        <tr>
+          <td class="border px-4 py-2">ISBN:</td>
+          <td class="border px-4 py-2">
+            <input type="text" th:field="*{isbn}" readonly="readonly" class="border border-gray-300 px-4 py-2 rounded-md focus:outline-none focus:border-teal-500" />
+          </td>
+        </tr>
+        <tr>
+          <td class="border px-4 py-2">Titre:</td>
+          <td class="border px-4 py-2">
+            <input type="text" th:field="*{titre}" class="border border-gray-300 px-4 py-2 rounded-md focus:outline-none focus:border-teal-500" />
+          </td>
+        </tr>
+        <tr>
+          <td class="border px-4 py-2">Nombre d'exemplaires:</td>
+          <td class="border px-4 py-2">
+            <input type="number" name="nbr" th:value="*{exemplaires.size()}" class="border border-gray-300 px-4 py-2 rounded-md focus:outline-none focus:border-teal-500" />
+          </td>
+        </tr>
+        <tr>
+          <td class="border px-4 py-2" colspan="2"><button type="submit" class="bg-teal-500 text-white px-4 py-2 rounded-md hover:bg-teal-600 w-full">Save</button> </td>
+        </tr>
+      </table>
+    </form>
+  </div>
 </div>
 </body>
 </html>

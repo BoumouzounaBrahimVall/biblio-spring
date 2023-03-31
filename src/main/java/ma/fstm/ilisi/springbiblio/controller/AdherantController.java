@@ -46,7 +46,7 @@ public class AdherantController {
     public ModelAndView showEditAdherantPage(@PathVariable(name = "id") String id) {
         ModelAndView mav = new ModelAndView("edit_adherant");
         Optional<Adherant> l = service.get(id);
-        mav.addObject("adherant", l);
+        mav.addObject("adherant", l.get());
         return mav;
     }
     @RequestMapping("/delete/{id}")

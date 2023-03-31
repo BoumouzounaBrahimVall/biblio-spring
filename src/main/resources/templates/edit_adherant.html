@@ -3,38 +3,40 @@
 <head>
   <meta charset="utf-8" />
   <title>Edit Adherent</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
-<div align="center">
-  <h1>Edit Adherent</h1>
-  <br />
-  <form action="#" th:action="@{/adherant/save}" th:object="${adherant}"
-        method="post">
-    <table border="0" cellpadding="10">
-      <tr>
-        <td>CIN:</td>
-        <td>
-          <input type="text" th:field="*{cin}" readonly="readonly" />
-        </td>
-      </tr>
-      <tr>
-        <td>Nom:</td>
-        <td>
-          <input type="text" th:field="*{nom}" />
-        </td>
-      </tr>
-      <tr>
-        <td>Prenom:</td>
-        <td>
-          <input type="text" th:field="*{prenom}" />
-        </td>
-      </tr>
-      <tr>
-        <td colspan="2"><button type="submit">Save</button> </td>
-      </tr>
-    </table>
-  </form>
-  53
+<nav class="bg-teal-600 px-4 py-4">
+  <div class="flex justify-between items-center">
+    <a href="#" class="text-white font-bold text-lg">My Library</a>
+    <div class="flex">
+      <a href="/livre" class="text-white mr-4 hover:text-teal-300">Gerer les livre</a>
+      <a href="/adherant" class="text-white mr-4 hover:text-teal-300">Gerer les Adherent</a>
+      <a href="/emprunt" class="text-white hover:text-teal-300">Gerer les Emprunt</a>
+    </div>
+  </div>
+</nav>
+<div class="flex justify-center items-center h-screen bg-teal-500">
+  <div class="bg-white px-4 py-2 rounded-md">
+    <h1 class="text-3xl text-center font-bold mb-8">Edit Adherent</h1>
+    <form th:action="@{/adherant/save}" th:object="${adherant}" method="post">
+      <div class="flex flex-col">
+        <label for="cin" class="p-1 font-semibold">CIN</label>
+        <input type="text" id="cin" th:field="*{cin}" class="border border-gray-300 px-4 py-2 rounded-md focus:outline-none focus:border-teal-500" readonly="readonly" />
+      </div>
+      <div class="flex flex-col mt-1">
+        <label for="nom" class="p-1 font-semibold">Nom</label>
+        <input type="text" id="nom" th:field="*{nom}" class="border border-gray-300 px-4 py-2 rounded-md focus:outline-none focus:border-teal-500" />
+      </div>
+      <div class="flex flex-col mt-1">
+        <label for="prenom" class="p-1 font-semibold">Prenom</label>
+        <input type="text" id="prenom" th:field="*{prenom}" class="border border-gray-300 px-4 py-2 rounded-md focus:outline-none focus:border-teal-500" />
+      </div>
+      <div class="flex justify-center mt-3">
+        <button type="submit" class="bg-teal-500 text-white px-4 py-2 rounded-md hover:bg-teal-600 w-full">Save</button>
+      </div>
+    </form>
+  </div>
 </div>
 </body>
 </html>
